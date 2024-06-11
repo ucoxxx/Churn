@@ -63,9 +63,9 @@ st.write(input_df)
 categorical_preprocessor = OneHotEncoder(drop='first', handle_unknown="ignore")
 numerical_preprocessor = StandardScaler()
 
-categorical_vars = X.select_dtypes(include=['O']).columns.tolist()
+categorical_vars = input_df.select_dtypes(include=['O']).columns.tolist()
 
-# numeric_vars = X.select_dtypes(np.number).columns.tolist()
+# numeric_vars = input_df.select_dtypes(np.number).columns.tolist()
 
 FS_preprocessor = ColumnTransformer(
     [
