@@ -55,18 +55,26 @@ def user_input_features():
     features = pd.DataFrame(data, index=[0])
     return features
 
-
 input_df = user_input_features()
 
 st.write(input_df)
 
+# Mendefinisikan ColumnTransformer untuk OneHotEncoder
+FS_preprocessor = ColumnTransformer(
+    transformers=[
+        ('cat', OneHotEncoder(), ['InternetService', 'OnlineSecurity', 'OnlineBackup', 'TechSupport', 'StreamingTV', 'Contract', 'PaperlessBilling', 'PaymentMethod']),
+        ('num', 'passthrough', ['MonthlyCharges'])
+    ]
+)
+
 # Tombol untuk memulai prediksi
 if st.button('Prediksi'):
-    # Konversi fitur yang dikodekan ke bentuk numerik menggunakan label encoder
-    for column in input_df.columns:
-        if column in label_encoders:
-            input_df[column] = label_encoders[column].transform(input_df[column])
+    # Fit ColumnTransformer pada input pengguna (sebaiknya ini dilakukan pada data pelatihan)
+    FS_preprocessor.fit(input_df)
     
-    # Buat prediksi
-    prediction = model.predict(input_df)
+    # Mengubah data input pengguna menggunakan ColumnTransformer yang telah dilatih
+    input_df_preprocessed = pd.DataFrame(FS_preprocessor.transform(input_df), columns=FS_preprocessor.get_feature_names_out())
+    
+    # Membuat prediksi menggunakan data yang telah diubah
+    prediction = model.predict(input_df_preprocessed)
     st.write(f'Prediksi: {prediction[0]}')
