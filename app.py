@@ -40,3 +40,5 @@ def user_input_features():
     MonthlyCharges = st.number_input('MonthlyCharges', min_value=0, max_value=200000, value=0)
 
 input_df = user_input_features()
+
+st.write(input_df)
