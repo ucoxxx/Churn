@@ -38,6 +38,23 @@ def user_input_features():
     PaperlessBilling = st.selectbox('PaperlessBilling', options=['Yes', 'No'])
     PaymentMethod = st.selectbox('PaymentMethod', options=['Electronic check', 'No'])
     MonthlyCharges = st.number_input('MonthlyCharges', min_value=0, max_value=200000, value=0)
+    
+    # Buat dictionary untuk menyimpan input pengguna
+    data = {
+        'InternetService': InternetService,
+        'OnlineSecurity': OnlineSecurity,
+        'OnlineBackup': OnlineBackup,
+        'TechSupport': TechSupport,
+        'StreamingTV': StreamingTV,
+        'Contract': Contract,
+        'PaperlessBilling': PaperlessBilling,
+        'PaymentMethod': PaymentMethod,
+        'MonthlyCharges': MonthlyCharges
+    }
+
+    features = pd.DataFrame(data, index=[0])
+    return features
+
 
 input_df = user_input_features()
 
