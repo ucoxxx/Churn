@@ -74,6 +74,6 @@ FS_preprocessor = ColumnTransformer(
     ]
 )
 
-test_df = pd.DataFrame(FS_preprocessor.transform(input_df),columns=FS_preprocessor.get_feature_names_out())
+test_df = FS_preprocessor(input_df)
 
 st.write(test_df)
