@@ -30,5 +30,13 @@ model = joblib.load('nn_Tuned.joblib')
 
 def user_input_features():
     InternetService = st.selectbox('InternetService', options=['Fiber optic', 'No'])
+    OnlineSecurity = st.selectbox('OnlineSecurity', options=['Yes', 'No'])
+    OnlineBackup = st.selectbox('OnlineBackup', options=['Yes', 'No'])
+    TechSupport = st.selectbox('TechSupport', options=['Yes', 'No'])
+    StreamingTV = st.selectbox('StreamingTV', options=['No internet service', 'No'])
+    Contract = st.selectbox('Contract', options=['Two year', 'No'])
+    PaperlessBilling = st.selectbox('PaperlessBilling', options=['Yes', 'No'])
+    PaymentMethod = st.selectbox('PaymentMethod', options=['Electronic check', 'No'])
+    MonthlyCharges = st.number_input('MonthlyCharges', min_value=0, max_value=200000, value=0)
 
 input_df = user_input_features()
