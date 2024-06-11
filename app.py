@@ -65,8 +65,18 @@ numerical_preprocessor = StandardScaler()
 
 categorical_vars = input_df.select_dtypes(include=['O']).columns.tolist()
 
-# numeric_vars = input_df.select_dtypes(np.number).columns.tolist()
+FS_preprocessor = ColumnTransformer(
+    [
+        ("one-hot-encoder", categorical_preprocessor, categorical_vars),
+        ("standard-scaler", numerical_preprocessor)
+    ]
+)
 
-test_df = categorical_preprocessor(input_df)
+FS_preprocessor.fit(input_df)
 
-st.write(test_df)
+df_train = pd.DataFrame(FS_preprocessor.transform(input_df),columns=FS_preprocessor.get_feature_names_out())
+
+Df_train_fs = df_train[best_features]
+
+st.write(Df_train_fs.shape)
+
