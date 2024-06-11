@@ -1,8 +1,10 @@
 streamlit
-keras==2.15.0
-tensorflow==2.15.0
+keras
+tensorflow
 pandas
 numpy
 matplotlib
 scikit-learn
 joblib
+seaborn
+xgboost
