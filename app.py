@@ -60,22 +60,13 @@ input_df = user_input_features()
 
 st.write(input_df)
 
-categorical_preprocessor = OneHotEncoder()
-numerical_preprocessor = StandardScaler()
-categorical_vars = input_df.select_dtypes(include=['O']).columns.tolist()
-
-FS_preprocessor = ColumnTransformer(
-    [
-        ("one-hot-encoder", categorical_preprocessor, ['categorical_feature']),
-        ("standard-scaler", numerical_preprocessor, ['numeric_feature'])
-    ]
-)
-
-FS_preprocessor.fit(input_df)
-
-df_train = pd.DataFrame(FS_preprocessor.transform(input_df),columns=FS_preprocessor.get_feature_names_out())
-
-Df_train_fs = df_train[best_features]
-
-st.write(Df_train_fs.shape)
-
+# Tombol untuk memulai prediksi
+if st.button('Prediksi'):
+    # Konversi fitur yang dikodekan ke bentuk numerik menggunakan label encoder
+    for column in input_df.columns:
+        if column in label_encoders:
+            input_df[column] = label_encoders[column].transform(input_df[column])
+    
+    # Buat prediksi
+    prediction = model.predict(input_df)
+    st.write(f'Prediksi: {prediction[0]}')
