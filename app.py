@@ -29,3 +29,6 @@ from sklearn.calibration import calibration_curve
 
 import warnings
 
+# Memuat model yang disimpan
+model = joblib.load('nn_Tuned.joblib')
+
