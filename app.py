@@ -59,3 +59,17 @@ def user_input_features():
 input_df = user_input_features()
 
 st.write(input_df)
+
+categorical_preprocessor = OneHotEncoder(drop='first', handle_unknown="ignore")
+numerical_preprocessor = StandardScaler()
+
+categorical_vars = X.select_dtypes(include=['O']).columns.tolist()
+
+# numeric_vars = X.select_dtypes(np.number).columns.tolist()
+
+FS_preprocessor = ColumnTransformer(
+    [
+        ("one-hot-encoder", categorical_preprocessor, categorical_vars),
+        ("standard-scaler", numerical_preprocessor, sig_num_vars)
+    ]
+)
