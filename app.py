@@ -73,4 +73,9 @@ FS_preprocessor = ColumnTransformer(
         ("standard-scaler", numerical_preprocessor)
     ]
 )
-st.write(input_df)
+
+FS_preprocessor.fit(input_df)
+
+test_df = pd.DataFrame(FS_preprocessor.transform(input_df),columns=FS_preprocessor.get_feature_names_out())
+
+st.write(test_df)
