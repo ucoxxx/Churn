@@ -70,6 +70,6 @@ categorical_vars = input_df.select_dtypes(include=['O']).columns.tolist()
 FS_preprocessor = ColumnTransformer(
     [
         ("one-hot-encoder", categorical_preprocessor, categorical_vars),
-        ("standard-scaler", numerical_preprocessor, sig_num_vars)
+        ("standard-scaler", numerical_preprocessor)
     ]
 )
