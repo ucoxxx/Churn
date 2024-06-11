@@ -60,15 +60,14 @@ input_df = user_input_features()
 
 st.write(input_df)
 
-categorical_preprocessor = OneHotEncoder(drop='first', handle_unknown="ignore")
+categorical_preprocessor = OneHotEncoder()
 numerical_preprocessor = StandardScaler()
-
 categorical_vars = input_df.select_dtypes(include=['O']).columns.tolist()
 
 FS_preprocessor = ColumnTransformer(
     [
-        ("one-hot-encoder", categorical_preprocessor),
-        ("standard-scaler", numerical_preprocessor)
+        ("one-hot-encoder", categorical_preprocessor, ['categorical_feature']),
+        ("standard-scaler", numerical_preprocessor, ['numeric_feature'])
     ]
 )
 
