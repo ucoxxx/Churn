@@ -29,3 +29,5 @@ model = joblib.load('nn_Tuned.joblib')
 
 def user_input_features():
     InternetService = st.selectbox('InternetService', options=['Fiber optic', 'No'])
+
+input_df = user_input_features()
