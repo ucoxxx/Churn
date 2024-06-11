@@ -73,3 +73,4 @@ FS_preprocessor = ColumnTransformer(
         ("standard-scaler", numerical_preprocessor)
     ]
 )
+st.write(input_df)
