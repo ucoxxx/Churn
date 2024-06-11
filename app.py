@@ -23,6 +23,7 @@ from sklearn.neural_network import MLPClassifier
 from sklearn.calibration import calibration_curve
 import joblib
 import warnings
+import streamlit as st
 
 # Memuat model yang disimpan
 model = joblib.load('nn_Tuned.joblib')
