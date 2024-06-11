@@ -28,4 +28,4 @@ import warnings
 model = joblib.load('nn_Tuned.joblib')
 
 def user_input_features():
-    InternetService = st.selectbox('InternetService':'No', options=list(label_encoders['InternetService'].classes_))
+    InternetService = st.selectbox('InternetService', options=['Fiber optic', 'No'])
