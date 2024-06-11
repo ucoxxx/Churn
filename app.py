@@ -27,3 +27,5 @@ import warnings
 # Memuat model yang disimpan
 model = joblib.load('nn_Tuned.joblib')
 
+def user_input_features():
+    InternetService = st.selectbox('InternetService':'No', options=list(label_encoders['InternetService'].classes_))
